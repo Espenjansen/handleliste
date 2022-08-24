@@ -1,17 +1,22 @@
-import imp
+from pickle import TRUE
 from unicodedata import category, name
 from django.shortcuts import render
-from backend.base import serializers
-from models import Shoppinglist
-from serializers import ShoppingListSerializer
+from .models import Shoppinglist
+from .serializers import ShoppingListSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import viewsets, generics
 
-class listShoppingView(APIView):
-    serializers_class = ShoppingListSerializer
-    def get(self, request, format=None):
-        names = [Shoppinglist.name for Shoppinglist in Shoppinglist.object.all()]
-        return Response(name)
+class listShoppingView(generics.ListCreateAPIView):
+    queryset = Shoppinglist.objects.all()
+    serializer_class = ShoppingListSerializer
+    def list(self, request):
+        #Note the use of get_queryset() instead of self.queryset
+        queryset = self.get_queryset()
+        serializer = ShoppingListSerializer(queryset, many=True)
+        return Response(serializer.data)  
+
+
 # Create your views here.
 
 

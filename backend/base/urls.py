@@ -1,6 +1,6 @@
-from base import views
 from django.urls import path
+from .views import listShoppingView
 
 urlpatterns = [
-    path("home", views.listcategoryview.as_view())
+    path("", listShoppingView.as_view())
 ]
