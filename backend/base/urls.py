@@ -1,6 +1,7 @@
+from atexit import register
 from django.urls import path
-from .views import listShoppingView
+from . import views
 
 urlpatterns = [
-    path("", listShoppingView.as_view())
+    path("register", views.register_request, name="register")
 ]
