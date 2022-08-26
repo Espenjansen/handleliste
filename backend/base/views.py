@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets, generics
 from .forms import NewUserForm
+from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -22,7 +23,7 @@ def register_request(request):
 			user = form.save()
 			login(request, user)
 			messages.success(request, "Registration successful." )
-			return redirect("base/handleliste.html")
+			return redirect("base/index.html")
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
 	return render (request=request, template_name="base/register.html", context={"register_form":form})
@@ -39,7 +40,7 @@ def login_request(request):
 			if user is not None:
 				login(request, user)
 				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("base/handleliste.html")
+				return redirect("base/index.html")
 			else:
 				messages.error(request,"Invalid username or password.")
 		else:
@@ -48,6 +49,8 @@ def login_request(request):
 	return render(request=request, template_name="base/login.html", context={"login_form":form})
 
 
+def index(request):
+    return render(request,"base/index.html",{})
 
 
 
