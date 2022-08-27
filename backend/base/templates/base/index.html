@@ -7,6 +7,14 @@
     <title>Handleliste</title>
 </head>
 <body>
-   <h1>Handleliste</h1> 
+   <h1>Handleliste!</h1> 
+        <form method="post" action="#">
+            {% csrf_token %}
+
+            <button type="submit", name="save", value="save">save</button>
+            <input type="text", name="new">
+            <button type="submit", name="newItem", value="newItem">Add item</button>
+        </form>
+
 </body>
 </html>

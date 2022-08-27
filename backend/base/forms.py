@@ -18,3 +18,7 @@ class NewUserForm(UserCreationForm):
 		if commit:
 			user.save()
 		return user
+
+
+class CreateNewItem(forms.Form):
+	name = forms.CharField(label="name", max_length=255)
