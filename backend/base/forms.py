@@ -22,3 +22,6 @@ class NewUserForm(UserCreationForm):
 
 class CreateNewItem(forms.Form):
 	name = forms.CharField(label="name", max_length=255)
+
+class CreateNewShoppinglist(forms.Form):
+	name = forms.CharField(label="name", max_length=255)
