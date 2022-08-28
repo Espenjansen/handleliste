@@ -88,5 +88,6 @@ def shoppingdetail(request, id):
 	}
 	return render(request, "base/detail.html", context)
 
+#viser views siden
 def view(request):
 	return render(request, "base/view.html", {})
