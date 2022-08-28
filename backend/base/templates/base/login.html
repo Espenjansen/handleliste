@@ -1,9 +1,12 @@
-
+<!--
 {% block content %}      
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
 
 
-
-<!--Login--> 
+Login 
 <div class="container py-5">
   <h1>Login</h1>
   <form method="POST">
@@ -14,4 +17,37 @@
   <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
 </div>
 
-{% endblock %}
+{% endblock %}-->
+<html>
+    <head>
+        {% load static%}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+        <title>Log in</title>
+    </head>
+    <body>
+        <div class="container">
+            <form method="POST">
+                    <h1>Log in</h1>
+                    {% csrf_token %}
+                    {% for non_field_error in form.non_field.errors %}
+                        <p class="error">{{ non_field_error }}</p>
+                    {% endfor %}
+                    {% for field in form %}
+                        <div class="field">
+                            <label for="{{ field.id_for_label }}" class="label">{{ field.html_name }}</label>
+                            {{ field }}
+                            {% if field.help_text %}
+                                <p class="help">{{ field.help_text }}</p>
+                            {% endif %}
+                            {% for error in field.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                <button type="submit" class="submit">Log in</button>
+            </form>
+            <p>don't have an account?</p>
+            <a href="/register">register one here</a>
+        </div>
+    </body>
+</html> 

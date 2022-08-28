@@ -2,6 +2,7 @@
 <head>
 
 </head>
+<!--viser shoppinglistene og gjør at du kan gå innpå dem-->
 {% block content %}
     {% for ls in user.shoppinglist.all %}
         <p><a href="/{{ls.id}}">{{ls.name}}</a></p>

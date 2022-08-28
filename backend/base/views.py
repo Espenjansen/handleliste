@@ -4,53 +4,44 @@ from django.shortcuts import render, redirect
 from .models import Item, Shoppinglist
 from .forms import CreateNewShoppinglist, NewUserForm, CreateNewItem
 from django.contrib.auth import login
-from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm
 
-#lag views her:
 
+#ser om du har gjort noe gale under registrering
 def register_request(request):
-	if request.method == "POST":
-		form = NewUserForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			login(request, user)
-			messages.success(request, "Registration successful." )
-			return redirect("create")
-		messages.error(request, "Unsuccessful registration. Invalid information.")
-	form = NewUserForm()
-	return render (request=request, template_name="base/register.html", context={"register_form":form})
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        fields = NewUserForm().fields
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("create")
 
+    else:
+        form = NewUserForm()
+        fields = NewUserForm().fields
+    return render(request, "base/register.html", {"form":form, "fields":fields})
 
+#ser om det er noe gale under login
 def login_request(request):
-	if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password')
-			user = authenticate(username=username, password=password)
-			if user is not None:
-				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("create")
-			else:
-				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	form = AuthenticationForm()
-	return render(request=request, template_name="base/login.html", context={"login_form":form})
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
+        fields = AuthenticationForm().fields
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("create")
 
-
-def index(request):
-    return render(request,"base/index.html",{})
-
-
-
+    else:
+        form = AuthenticationForm()
+        fields = AuthenticationForm().fields
+    return render(request, "base/login.html", {'form': form, 'fields': fields})
 
 
 #lag ny liste
-#gjøre at brukere må logge inn får å gjøre noe
+#gjør at form-ene går til en bruker og gjør at bare en kan gå inni dem
 def create_list(request):
 	if request.method == "POST":
 		form = CreateNewShoppinglist(request.POST)
@@ -77,9 +68,12 @@ def create_list(request):
 def shoppingdetail(request, id):
 	ls = Shoppinglist.objects.get(id=id)
 
+#hvis request er en post request så lag ein variabel som heter form
+#form er ein Item med inputet fra formen på frontend
 	if request.method == "POST":
 		form = CreateNewItem(request.POST)
 
+#sjekker om det er rett og lagrer det til databasen
 		if form.is_valid():
 			n = form.cleaned_data["name"]
 			i = Item(name=n, shoppinglist=ls)
@@ -93,6 +87,6 @@ def shoppingdetail(request, id):
 		"form": form
 	}
 	return render(request, "base/detail.html", context)
-	
+
 def view(request):
 	return render(request, "base/view.html", {})
