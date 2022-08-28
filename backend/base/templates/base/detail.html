@@ -1,7 +1,23 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
 {{ls.name}}
 {{ls.id}}
 <form method="post">
     {% csrf_token %}
     {{form.as_p}}
-    <button type="submit", name="save">Create new</button>
-</form>
+    <button type="submit", name="save">Create new item</button>
+</form> 
+
+{% for x in items %}
+<li>
+  {{x.name}}
+</li>
+{% endfor %}
+    {% else %}
+    <h1 class="not-logged-in-title">It seems you aren't logged in</h1>
+    <div class="not-logged-in">
+      <a href="/login">Click here to log in</a>
+    </div>
+{% endif %}
+{% endblock %}

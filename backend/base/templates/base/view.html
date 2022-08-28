@@ -1,0 +1,9 @@
+{% extends "base/base.html" %}
+<head>
+
+</head>
+{% block content %}
+    {% for ls in user.shoppinglist.all %}
+        <p><a href="/{{ls.id}}">{{ls.name}}</a></p>
+    {% endfor %}
+{% endblock %}

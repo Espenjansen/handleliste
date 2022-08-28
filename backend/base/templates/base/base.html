@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .sidenav {
+            height:100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(66, 66, 66); 
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+        
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25;
+            color: rgb(202, 202, 202);
+            display: block;
+        }
+
+        .sidenav a:hover{
+            color: rgb(170, 170, 170);
+        }
+
+        .base{
+            margin-left: 160px;
+            padding: 0px 10px;
+        }
+
+    </style>
+    <title></title>
+</head>
+<body>
+    <div class="sidenav">
+        <a href="/create">Create</a>
+        <a href="/view">View</a>
+         <a href="/logout">logout</a>
+    </div>    
+
+    <div id="content", name="content", class="base">
+            {% block content %}
+            {% endblock %}
+
+    </div>
+</body>
+</html>

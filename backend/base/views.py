@@ -1,4 +1,5 @@
-from multiprocessing import context
+from http.client import HTTPResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .models import Item, Shoppinglist
 from .forms import CreateNewShoppinglist, NewUserForm, CreateNewItem
@@ -16,7 +17,7 @@ def register_request(request):
 			user = form.save()
 			login(request, user)
 			messages.success(request, "Registration successful." )
-			return redirect("index")
+			return redirect("create")
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
 	return render (request=request, template_name="base/register.html", context={"register_form":form})
@@ -32,7 +33,7 @@ def login_request(request):
 			if user is not None:
 				login(request, user)
 				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("index")
+				return redirect("create")
 			else:
 				messages.error(request,"Invalid username or password.")
 		else:
@@ -45,8 +46,6 @@ def index(request):
     return render(request,"base/index.html",{})
 
 
-#liste med lister
-#gjøre at brukere må logge inn får å gjøre noe
 
 
 
@@ -59,8 +58,11 @@ def create_list(request):
 		if form.is_valid():
 			u = request.user
 			n = form.cleaned_data["name"]
-			i = Shoppinglist(name=n, owner=u)
-			i.save()
+			s = Shoppinglist(name=n)
+			s.save()
+			request.user.shoppinglist.add(s)
+
+		return HttpResponseRedirect("/%i" %s.id)
 	else:
 		form = CreateNewItem()
 	list = Shoppinglist.objects.all()
@@ -84,9 +86,13 @@ def shoppingdetail(request, id):
 			i.save()
 	else:
 		form = CreateNewItem()
+	items=ls.get_Items()
 	context = {
+		"items":items,
 		"ls": ls,
 		"form": form
 	}
 	return render(request, "base/detail.html", context)
 	
+def view(request):
+	return render(request, "base/view.html", {})
