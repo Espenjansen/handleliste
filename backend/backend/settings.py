@@ -40,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     #my apps 
+    'tailwind',
+    'theme',
     'base.apps.BaseConfig',
-]  
+    'django_browser_reload',
+    ]  
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -123,6 +127,17 @@ STATIC_URL = '/static/'
 
 
 LOGOUT_REDIRECT_URL = "/login"
+
+TAILWIND_APP_NAME = 'theme'
+
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
