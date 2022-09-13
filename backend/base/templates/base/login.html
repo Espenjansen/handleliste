@@ -1,26 +1,8 @@
-<!--
-{% block content %}      
-<head>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-
-
-Login 
-<div class="container py-5">
-  <h1>Login</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ login_form }}
-    <button class="btn btn-primary" type="submit">Login</button>
-  </form>
-  <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
-</div>
-
-{% endblock %}-->
 <html>
+    {% load tailwind_tags %}
     <head>
         {% load static%}
+        {% tailwind_css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
         <title>Log in</title>
     </head>
@@ -50,4 +32,4 @@ Login
             <a href="/register">register one here</a>
         </div>
     </body>
-</html> 
+</html>
