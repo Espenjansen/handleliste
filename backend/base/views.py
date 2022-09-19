@@ -91,3 +91,6 @@ def shoppingdetail(request, id):
 #viser views siden
 def view(request):
 	return render(request, "base/view.html", {})
+
+def homepage(request):
+    return render(request, 'base.html')

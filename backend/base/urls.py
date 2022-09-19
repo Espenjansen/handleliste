@@ -8,5 +8,6 @@ urlpatterns = [
     path('create', views.create_list, name="create"),
     path('<int:id>', views.shoppingdetail, name="shoppingdetail"),
     path('view', views.view, name="view"),
+    path('', views.homepage, name="index"),
     
 ]
