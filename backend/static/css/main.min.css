@@ -559,9 +559,9 @@ video {
 .rounded-xl {
   border-radius: 0.75rem;
 }
-.bg-blue-100 {
+.bg-blue-500 {
   --tw-bg-opacity: 1;
-  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 .p-10 {
   padding: 2.5rem;
