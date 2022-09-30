@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     'theme',
     'base.apps.BaseConfig',
     'django_browser_reload',
-    'crispy_forms',
-    'crispy_tailwind',
     ]  
 
 MIDDLEWARE = [
