@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from email.mime import base
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -44,8 +45,6 @@ INSTALLED_APPS = [
     'theme',
     'base.apps.BaseConfig',
     'django_browser_reload',
-    'crispy_forms',
-    'crispy_tailwind',
     ]  
 
 MIDDLEWARE = [
@@ -127,15 +126,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
 
 
 LOGOUT_REDIRECT_URL = "/login"
 
 
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
-
-CRISPY_TEMPLATE_PACK = "tailwind"
 
 TAILWIND_APP_NAME = 'theme'
 

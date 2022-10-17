@@ -1,29 +1,9 @@
-<!--{% block content %} 
-<head>
-	{% load static %}
-	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-         
-
-Register
-<div class="container py-5">
-	<h1>Register</h1>
-	<form method="POST">
-		{% csrf_token %}
-		{{ register_form }}                    
-		<button class="btn btn-primary" type="submit">Register</button>
-	</form>
-	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
-</div>
-
-{% endblock %} -->
-
-
 <html>
     <head>
         {% load static%}
         <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
         <title>Register an account</title>
+        <link href="/static/output.css" rel="stylesheet">   
     </head>
     <body>
         <div class="container">
