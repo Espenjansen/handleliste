@@ -547,32 +547,16 @@ video {
 .fixed {
   position: fixed;
 }
-.m-10 {
-  margin: 2.5rem;
-}
 .block {
   display: block;
 }
 .hidden {
   display: none;
 }
-.rounded-xl {
-  border-radius: 0.75rem;
+.border-solid {
+  border-style: solid;
 }
-.bg-blue-500 {
+.bg-slate-500 {
   --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
-}
-.p-10 {
-  padding: 2.5rem;
-}
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-.font-bold {
-  font-weight: 700;
-}
-.underline {
-  text-decoration-line: underline;
+  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
 }

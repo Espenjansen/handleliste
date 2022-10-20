@@ -3,12 +3,12 @@
 
 <head>
 {% load static%}
-<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
 {% block content %}
 <ul>
 
-   <!-- {% for item in list %}
+    <!-- {% for item in list %}
     <li>
         {{ item.name }}
     </li>
@@ -20,12 +20,12 @@
 <form method="post">
     {% csrf_token %}
     {{form.as_p}}
-    <button type="submit", name="save">Create new</button>
+    <button class="border-solid " type="submit", name="save">Create new</button>
 </form>
 {% endblock %}
     {% else %}
     <h1 class="not-logged-in-title">It seems you aren't logged in</h1>
     <div class="not-logged-in">
-      <a href="/login">Click here to log in</a>
+    <a href="/login">Click here to log in</a>
     </div>
 {% endif %}
