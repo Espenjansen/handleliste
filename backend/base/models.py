@@ -18,5 +18,3 @@ class Item(models.Model):
     shoppinglist = models.ForeignKey(Shoppinglist, on_delete=models.CASCADE)
     def __str__(self):
         return self.name
-
-
