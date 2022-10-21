@@ -94,3 +94,4 @@ def view(request):
 
 def homepage(request):
     return render(request, 'base.html')
+	
