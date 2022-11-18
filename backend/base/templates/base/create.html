@@ -11,7 +11,7 @@
 <form method="post">
     {% csrf_token %}
     {{form.as_p}}
-    <button class="border-solid " type="submit", name="save">Create new</button>
+    <button type="submit", name="save">Create new</button>
 </form>
 {% endblock %}
     {% else %}
